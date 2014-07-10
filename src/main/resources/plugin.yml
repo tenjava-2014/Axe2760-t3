@@ -1,0 +1,3 @@
+name: Axe2760-t3
+main: com.tenjava.entries.Axe2760.t3.TenJava
+version: '${project.version}'
