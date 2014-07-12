@@ -5,7 +5,7 @@ package com.tenjava.entries.Axe2760.t3;
 import net.minecraft.server.v1_7_R3.*;
 import org.bukkit.Location;
 
-public class SlimeMan extends Entity {
+public class SlimeMan extends EntityCreature{
 
     private Head head;
     private Leg leftLeg;
@@ -18,19 +18,23 @@ public class SlimeMan extends Entity {
         super(world);
 
         this.yaw = 0;
-        rightArm = new Arm(world, this, false, new Location(world.getWorld(),locX + 0.85, locY, locZ));
-        leftArm = new Arm(world,this,true, new Location(world.getWorld(), locX - 0.85, locY,locZ));
-        head = new Head(world, this, new Location(world.getWorld(), locX, locY + 2, locZ));
-        torso = new Torso(world, this, new Location(world.getWorld(), locX, locY, locZ));
-        leftLeg = new Leg(world, this, true, new Location(world.getWorld(),locX-0.5,locY-2,locZ));
-        rightLeg = new Leg(world,this,false, new Location(world.getWorld(),locX + 0.5, locY - 2, locZ));
+        rightArm = new Arm(world, this, false, new Location(world.getWorld(),locX + 0.85, locY+2, locZ));
+        leftArm = new Arm(world,this,true, new Location(world.getWorld(), locX - 0.85, locY+2,locZ));
+        head = new Head(world, this, new Location(world.getWorld(), locX, locY + 4, locZ));
+        torso = new Torso(world, this, new Location(world.getWorld(), locX, locY+2, locZ));
+        leftLeg = new Leg(world, this, true, new Location(world.getWorld(),locX-0.5,locY,locZ));
+        rightLeg = new Leg(world,this,false, new Location(world.getWorld(),locX + 0.5, locY , locZ));
+
+        this.getNavigation().b(true);
+        this.goalSelector.a(0, new PathfinderGoalFloat(this));
+        this.goalSelector.a(2, new PathfinderGoalMeleeAttack(this, EntityHuman.class, 1.0D, false));
+        this.goalSelector.a(7, new PathfinderGoalRandomStroll(this, 1.0D));
+        this.goalSelector.a(8, new PathfinderGoalLookAtPlayer(this, EntityHuman.class, 8.0F));
+        this.goalSelector.a(8, new PathfinderGoalRandomLookaround(this));
+        this.targetSelector.a(1, new PathfinderGoalHurtByTarget(this, true));
+        this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget(this, EntityHuman.class, 0, true));
+
     }
-    @Override
-    protected void c() {}
-    @Override
-    protected void a(NBTTagCompound nbtTagCompound) {}
-    @Override
-    protected void b(NBTTagCompound nbtTagCompound) {}
 
 
     private abstract class Part{
