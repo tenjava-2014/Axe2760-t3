@@ -8,24 +8,16 @@ import org.bukkit.util.noise.SimplexOctaveGenerator;
 import java.util.Random;
 
 public class MoonGenerator extends ChunkGenerator{
-    private long seed;
-
-    public MoonGenerator(){
-        seed = new Random().nextLong();
-    }
-
-    public MoonGenerator(long seed){
-        this.seed = seed;
-    }
 
     @Override
     public byte[][] generateBlockSections(World world, Random random, int chunkX, int chunkZ, BiomeGrid biomes) {
         byte[][] result = new byte[world.getMaxHeight() /16][];
-        SimplexOctaveGenerator generator = new SimplexOctaveGenerator(seed, 3);
+        SimplexOctaveGenerator generator = new SimplexOctaveGenerator(world, 8);
+        generator.setScale(1/20.0);
         for (int x = 0; x < 16; x++){
             for (int z = 0; z < 16; z++){
                 setBlock(result, x,0,z,Material.BEDROCK);
-                int topY = (int)Math.floor(generator.noise(chunkX * 16 + x, chunkZ * 16 + z, 10, 10));
+                int topY = (int)Math.floor(generator.noise(chunkX * 16 + x, chunkZ * 16 + z, 0.4, 0.4)) + 50;
                 for (int y = 1; y <= topY; y++){
                     setBlock(result,x,y,z,Material.STONE);
                 }
