@@ -28,8 +28,7 @@ Maven will download all required dependencies and build a ready-for-use plugin p
 Usage
 -----
 
-1. Install plugin
-2. Do things with it
+Got bored and gave after 6 hours D: 
 
 <!-- Hi, Axe2760! This is the default README for every ten.java submission. -->
 <!-- We encourage you to edit this README with some information about your submission – keep in mind you'll be scored on documentation! -->
