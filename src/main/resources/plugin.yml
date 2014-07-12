@@ -1,3 +1,4 @@
-name: noidea
-main: com.tenjava.entries.Axe2760.t3.someClassIhaventdecidedyet D:
+name: MoonWorld
+main: com.tenjava.entries.Axe2760.t3.MoonWorld
 version: '0.0'
+load: STARTUP
